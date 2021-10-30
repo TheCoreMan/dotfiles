@@ -14,5 +14,7 @@ do
 done
 cd -
 
-echo "DONE!"
+
+echo "DONE! These are not all the files (tmuxminator for example), so make sure
+you check everything is working correctly."
 
