@@ -130,7 +130,6 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export DENO_INSTALL="/home/shay/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
-eval "$(pyenv init -)"
 
 export RECODIR="/home/shay/Desktop/code/reco"
 
@@ -138,8 +137,27 @@ export RECODIR="/home/shay/Desktop/code/reco"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-alias '?'="lynx-duck"
+function lynx-duck() {
+	lynx "duckduckgo.com/lite?q=$*"
+}
 
+alias '?'="lynx-duck"
+alias 'cdr'="cd ~/Desktop/code/reco"
 function covid() {
 	curl https://corona-stats.online/$1
 }
+
+# Go stuff
+export CGO_ENABLED=0
+
+# Python env init
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+function print_todays_blog_title() {
+	echo -n ""$1" / Work Blog / $(date +%Y%m%d) (W$(date +%-U))"
+}
+
+alias 'blog'="print_todays_blog_title Shay"
