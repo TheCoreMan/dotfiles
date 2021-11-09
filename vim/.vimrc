@@ -24,6 +24,7 @@ Plugin 'rhysd/vim-clang-format'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-cucumber'
+Plugin 'frazrepo/vim-rainbow'
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
@@ -200,4 +201,5 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-
+" Colorize brackets, See https://github.com/frazrepo/vim-rainbow
+let g:rainbow_active = 1
