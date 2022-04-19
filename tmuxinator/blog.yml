@@ -1,7 +1,7 @@
 # /home/shay/.config/tmuxinator/blog.yml
 
 name: Blog 📓
-root: ~/Desktop/code/blog
+root: ~/Desktop/code/personal-blog
 
 # Optional tmux socket
 # socket_name: foo

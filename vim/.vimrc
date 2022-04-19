@@ -30,6 +30,9 @@ Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 Plugin 'JamshedVesuna/vim-markdown-preview'
+" statusline
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -151,6 +154,9 @@ endfunction
 " autocomplete when .
 au filetype go inoremap <buffer> . .<C-x><C-o>
 
+" https://github.com/buoto/gotests-vim
+Plugin 'buoto/gotests-vim'
+
 " Emoji stuff
 set completefunc=emoji#complete
 let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
@@ -203,3 +209,5 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Colorize brackets, See https://github.com/frazrepo/vim-rainbow
 let g:rainbow_active = 1
+
+

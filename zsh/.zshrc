@@ -83,6 +83,7 @@ plugins=(
 	kubectl
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	npm
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -157,7 +158,12 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
 function print_todays_blog_title() {
-	echo -n ""$1" / Work Blog / $(date +%Y%m%d) (W$(date +%-U))"
+	echo -n ""$1" / Work Blog / $(date +%Y%m%d) ($(date +%a) W$(date +%-U))"
 }
 
 alias 'blog'="print_todays_blog_title Shay"
+
+# Need to install zplug for this
+
+
+eval $(thefuck --alias)
