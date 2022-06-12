@@ -4,37 +4,38 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'preservim/nerdtree'
-Plugin 'cespare/vim-toml'
-Plugin 'fatih/vim-go'
-Plugin 'fatih/molokai'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'junegunn/vim-emoji'
-Bundle 'Rykka/riv.vim'
-Bundle 'Rykka/InstantRst'
-Plugin 'earthly/earthly.vim', { 'branch': 'main' }
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-cucumber'
-Plugin 'frazrepo/vim-rainbow'
-" Track the engine.
-Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
-Plugin 'JamshedVesuna/vim-markdown-preview'
-" statusline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#begin('~/.vim/plugged')
+	Plug 'tpope/vim-fugitive'
+	Plug 'preservim/nerdtree'
+	Plug 'cespare/vim-toml'
+	Plug 'fatih/vim-go'
+	Plug 'fatih/molokai'
+	Plug 'davidhalter/jedi-vim'
+"	Plugin 'junegunn/vim-emoji'
+	"Bundle 'Rykka/riv.vim'
+	"Bundle 'Rykka/InstantRst'
+	Plug 'earthly/earthly.vim', { 'branch': 'main' }
+	Plug 'junegunn/fzf'
+	Plug 'junegunn/fzf.vim'
+	Plug 'mileszs/ack.vim'
+	Plug 'rhysd/vim-clang-format'
+	" Nousing vundle for this one
+	" Plin 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'pangloss/vim-javascript'
+	Plug 'tpope/vim-cucumber'
+	Plug 'frazrepo/vim-rainbow'
+	" Trk the engine.
+	" Plin 'SirVer/ultisnips'
+	" Snpets are separated from the engine. Add this if you want them:
+	" Plin 'honza/vim-snippets'
+	Plug 'JamshedVesuna/vim-markdown-preview'
+	" stusline
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+	" hts://github.com/buoto/gotests-vim
+	Plug 'buoto/gotests-vim'
+"	Plug 'neoclide/coc.nvim', {'branch': 'release'} 
+call plug#end()
 
 " use grip for markdown
 let vim_markdown_preview_github=1
@@ -154,15 +155,12 @@ endfunction
 " autocomplete when .
 au filetype go inoremap <buffer> . .<C-x><C-o>
 
-" https://github.com/buoto/gotests-vim
-Plugin 'buoto/gotests-vim'
-
 " Emoji stuff
-set completefunc=emoji#complete
-let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-let g:gitgutter_sign_modified_removed = emoji#for('collision')
+"set completefunc=emoji#complete
+"let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+"let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+"let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+"let g:gitgutter_sign_modified_removed = emoji#for('collision')
 
 " silversurfer stuff
 " ack.vim --- {{{
@@ -209,5 +207,3 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Colorize brackets, See https://github.com/frazrepo/vim-rainbow
 let g:rainbow_active = 1
-
-
