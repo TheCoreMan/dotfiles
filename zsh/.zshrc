@@ -5,72 +5,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
-export ZSH="/home/shay/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -84,98 +26,122 @@ plugins=(
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	npm
+	nvm
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
 export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+HOMEBREW_NO_ENV_HINTS=true
+
+alias 'cdc'='cd $HOME/Desktop/code'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
-# My stuff
-export PATH="/home/shay/.pyenv/bin:$PATH"
-export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-export DENO_INSTALL="/home/shay/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-
-
-export RECODIR="/home/shay/Desktop/code/reco"
-
 # NVM stuff
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+# Search inside the command line
 function lynx-duck() {
 	lynx "duckduckgo.com/lite?q=$*"
 }
 
 alias '?'="lynx-duck"
-alias 'cdr'="cd ~/Desktop/code/reco"
-function covid() {
-	curl https://corona-stats.online/$1
-}
 
-# Go stuff
-export CGO_ENABLED=0
+alias airpods='blueutil --connect $(blueutil --paired --format json-pretty | jq -r ".[] | select(.name | contains(\"Shay’s AirPods Pro\")) | .address")'
 
-# Python env init
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
-function print_todays_blog_title() {
-	echo -n ""$1" / Work Blog / $(date +%Y%m%d) ($(date +%a) W$(date +%-U))"
+# Need this for pipenv
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+# Add pipenv to path
+export PATH="$HOME/.local/bin:$PATH"
+# Add python user binaries to path
+export PATH="/Users/shay/Library/Python/3.11/bin:$PATH"
+
+# Add go binaries to path
+export PATH="$PATH:$HOME/go/bin"
+
+# ~/.zshrc
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
+# See https://patloeber.com/pomodoro-app-cli-macos/
+work() {
+  # usage: work 10m, work 60s etc. Default is 20m
+  timer "${1:-20m}" && terminal-notifier -message 'Pomodoro'\
+        -title 'Work Timer is up! Take a Break 😊'\
+        -sound Crystal
 }
 
-alias 'blog'="print_todays_blog_title Shay"
+rest() {
+  # usage: rest 10m, rest 60s etc. Default is 5m
+  timer "${1:-5m}" && terminal-notifier -message 'Pomodoro'\
+        -title 'Break is over! Get back to work 😬'\
+        -sound Crystal
+}
 
-# Need to install zplug for this
+grab_download() {
+    # Define variables
+    latest_file=$(ls -dtr1 ~/Downloads/* | tail -1)
+    current_dir=$(pwd)
 
+    # Check if gum is installed
+    if ! command -v gum &> /dev/null
+    then
+        echo "gum is not installed. Please install gum from https://github.com/charmbracelet/gum"
+        return 1
+    fi
 
+    # Display information about the latest file
+    file_info=$(file "$latest_file")
+    gum style --bold --foreground "#FFA500" --border normal --border-foreground "#00FF00" "📄 Latest Downloaded File:" && gum style --italic --foreground "#00FFFF" "$file_info"
+
+    # Copy the latest file to the current directory with a loader/spinner
+    gum spin --spinner dot --title "Copying file..." -- cp -p "$latest_file" "$current_dir"
+
+    # Inform the user of the successful copy operation
+    gum style --bold --foreground "#00FF00" "✅ Successfully copied the latest downloaded file to the current directory!"
+
+    # Print the final absolute path of the copied file
+    gum style --bold --foreground "#FFA500" "📂 It's here:" && gum style --italic --foreground "#00FFFF" "$current_dir"
+}
+
+# fzf git
+# see https://github.com/junegunn/fzf-git.sh
+source ~/.zsh-plugins-manual/fzf-git.sh/fzf-git.sh
+
+export K9S_EDITOR="vim"
+export EDITOR="vim"
+
+eval "$(zoxide init zsh)"
 eval $(thefuck --alias)
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="/home/linuxbrew/.linuxbrew/opt/go@1.17/bin:$PATH"
+alias git-clean-branches="git branch --merged main | grep -v -e 'main' -e '\*' | xargs -n 1 git branch -d && git remote prune origin || echo 'No local branches to remove, so nothing done.'"
+alias githist='git log --abbrev-commit --oneline $(git merge-base origin/main HEAD)^..HEAD'
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# Avoid some Python services crash.
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
-gtp () {
-	git tag "$1" --force && git push origin "$1" --force
-} 
+export PATH="/Users/shay/.pixi/bin:$PATH"
+# For pg_dump and pg_restore
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
