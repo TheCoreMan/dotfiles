@@ -1,0 +1,18 @@
+# Shay Nehmad's ghostty config file
+theme = "Dark Pastel"
+
+# background
+background-opacity = 0.92
+background-blur-radius = 15
+  
+macos-titlebar-style = transparent
+
+minimum-contrast = 1.05
+
+# Font, based on https://www.jonashietala.se/blog/2025/01/06/first_impressions_of_ghostty/
+font-family = IosevkaTreeLig Nerd Font
+font-style = Medium
+font-style-bold = Bold
+font-style-italic = Medium Italic
+font-style-bold-italic = Bold Italic
+font-size = 16
